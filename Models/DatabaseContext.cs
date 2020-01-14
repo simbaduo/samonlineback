@@ -2,12 +2,14 @@
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-
+// using samonlinebackend.Models;
 namespace samonlineback.Models
 {
   public partial class DatabaseContext : DbContext
   {
 
+
+    public DbSet<Appointment> Appointments { get; set; }
     private string ConvertPostConnectionToConnectionString(string connection)
     {
       var _connection = connection.Replace("postgres://", String.Empty);
@@ -20,8 +22,7 @@ namespace samonlineback.Models
       if (!optionsBuilder.IsConfigured)
       {
         var envConn = Environment.GetEnvironmentVariable("DATABASE_URL");
-#warning Update this connection string to point to your own database.
-        var conn = "server=localhost;database=samonlinebackDatabase";
+        var conn = "server=localhost;database=eternalmineralsDatabase";
         if (envConn != null)
         {
           conn = ConvertPostConnectionToConnectionString(envConn);
