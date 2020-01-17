@@ -39,7 +39,6 @@ namespace samonlineback.Controllers
       var response = await client.SendEmailAsync(msg);
       Console.WriteLine(response.StatusCode);
       return Ok(response);
-
     }
   }
 }
