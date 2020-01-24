@@ -9,7 +9,14 @@ namespace samonlineback.Models
   {
 
 
-    public DbSet<Appointment> Appointments { get; set; }
+    public DbSet<Appointment> Appointment { get; set; }
+
+    public DbSet<CarSales> CarSales { get; set; }
+
+    public DbSet<Specials> Specials { get; set; }
+
+
+
     private string ConvertPostConnectionToConnectionString(string connection)
     {
       var _connection = connection.Replace("postgres://", String.Empty);
@@ -22,7 +29,7 @@ namespace samonlineback.Models
       if (!optionsBuilder.IsConfigured)
       {
         var envConn = Environment.GetEnvironmentVariable("DATABASE_URL");
-        var conn = "server=localhost;database=eternalmineralsDatabase";
+        var conn = "server=localhost;database=samonlineback";
         if (envConn != null)
         {
           conn = ConvertPostConnectionToConnectionString(envConn);
