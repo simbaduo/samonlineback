@@ -15,8 +15,10 @@ namespace samonlineback.Models
 
     public DbSet<Specials> Specials { get; set; }
 
-
-
+    public DbSet<Reviews> Reviews { get; set; }
+    //<Reviews> is the structure of the table, yellow Reviews is the name. They do not have to match we could call the second Reviews Title Banana if we so choose
+    public DbSet<Resume> Resume { get; set; }
+    //why is there no CarSearch DB set?
     private string ConvertPostConnectionToConnectionString(string connection)
     {
       var _connection = connection.Replace("postgres://", String.Empty);

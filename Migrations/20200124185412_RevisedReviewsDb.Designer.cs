@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using samonlineback.Models;
@@ -9,9 +10,10 @@ using samonlineback.Models;
 namespace samonlineback.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20200124185412_RevisedReviewsDb")]
+    partial class RevisedReviewsDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,16 +43,10 @@ namespace samonlineback.Migrations
                     b.Property<string>("Model")
                         .HasColumnType("text");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
-
                     b.Property<string>("Reason")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("RequestedAppointment")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("SecondChoiceAppointment")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Year")
@@ -67,9 +63,6 @@ namespace samonlineback.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Color")
-                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -89,39 +82,12 @@ namespace samonlineback.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 
-                    b.Property<string>("VIN")
-                        .HasColumnType("text");
-
                     b.Property<string>("Year")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("CarSales");
-                });
-
-            modelBuilder.Entity("samonlineback.Models.Resume", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ResumeDoc")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Resume");
                 });
 
             modelBuilder.Entity("samonlineback.Models.Reviews", b =>
