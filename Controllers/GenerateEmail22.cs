@@ -16,10 +16,12 @@ namespace samonlineback.Controllers
     {
       this.SENDGRID_API_KEY = configuration["SENDGRID_API_KEY"];
     }
-    public async Task SendEmail(Appointment NewAppointment)
+
+
+    public async Task<Response> SendEmail(Appointment NewAppointment)
     {
       var client = new SendGridClient(this.SENDGRID_API_KEY);
-      var from = new EmailAddress("appointment@gmail.com", "appointment maker");
+      var from = new EmailAddress("appointment@gmail.com", "Requested Customer");
       var subject = "New Appointment Request";
       var to = new EmailAddress("swandersautomart@gmail.com", "Customer");
       var plainTextContent = "Auto Reply";
@@ -34,6 +36,33 @@ namespace samonlineback.Controllers
       var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
       // msg.AddTo(to);
       var response = await client.SendEmailAsync(msg);
+      return response;
     }
+
+
+    public async Task<Response> ReplyEmail(Appointment NewAppointment, string selectedDate)
+    {
+      var client = new SendGridClient(this.SENDGRID_API_KEY);
+      var from = new EmailAddress("swandersautomart@gmail.com", "Appointment Confirmation");
+      var subject = "New Appointment Request";
+      var to = new EmailAddress($"{NewAppointment.Email}", "Customer");
+      var selected = selectedDate == "first" ? NewAppointment.RequestedAppointment : NewAppointment.SecondChoiceAppointment;
+      var plainTextContent = $"We have confirmed your appointment for {selected}";
+      var htmlContent = $"<strong>First Name</strong>: {NewAppointment.FirstName}<br> <strong>Last Name</strong>: {NewAppointment.LastName} <br> <strong>Email</strong>: {NewAppointment.Email} <br>{plainTextContent}";
+      // var msg = new SendGridMessage()
+      // {
+      //   From = from,
+      //   Subject = subject,
+      //   PlainTextContent = plainTextContent,
+      //   HtmlContent = htmlContent,
+      // };
+      var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+      // msg.AddTo(to);
+      var response = await client.SendEmailAsync(msg);
+      return response;
+    }
+
+
+
   }
 }

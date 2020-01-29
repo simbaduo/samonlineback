@@ -1,7 +1,7 @@
-docker build -t sdg-sample-api-template .
+docker build -t samonlinebackimg-img .
 
-docker tag sdg-sample-api-template registry.heroku.com/sdg-sample-api-template/web
+docker tag samonlinebackimg-img registry.heroku.com/samonlineback/web
 
-docker push registry.heroku.com/sdg-sample-api-template/web
+docker push registry.heroku.com/samonlineback/web
 
-heroku container:release web -a sdg-sample-api-template
+heroku container:release web -a samonlineback

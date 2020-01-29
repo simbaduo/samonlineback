@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using AuthExample.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-// using samonlinebackend.Models;
+
 namespace samonlineback.Models
 {
   public partial class DatabaseContext : DbContext
@@ -13,8 +14,14 @@ namespace samonlineback.Models
 
     public DbSet<CarSales> CarSales { get; set; }
 
+    public DbSet<User> Users { get; set; }
+
     public DbSet<Specials> Specials { get; set; }
 
+    public DbSet<ContactUs> ContactUs { get; set; }
+
+    public DbSet<Veteran> Veteran { get; set; }
+    
     public DbSet<Reviews> Reviews { get; set; }
     //<Reviews> is the structure of the table, yellow Reviews is the name. They do not have to match we could call the second Reviews Title Banana if we so choose
     public DbSet<Resume> Resume { get; set; }

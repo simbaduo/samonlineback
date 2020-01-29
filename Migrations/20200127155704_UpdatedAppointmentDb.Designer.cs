@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using samonlineback.Models;
@@ -9,9 +10,10 @@ using samonlineback.Models;
 namespace samonlineback.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20200127155704_UpdatedAppointmentDb")]
+    partial class UpdatedAppointmentDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,8 +28,17 @@ namespace samonlineback.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("text");
+
                     b.Property<string>("HashedPassword")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ProfileUrl")
                         .HasColumnType("text");
 
                     b.Property<string>("Username")
@@ -37,44 +48,6 @@ namespace samonlineback.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("AuthExample.Models.Veteran", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Birthday")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("MilitaryBranch")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Rank")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Stationed")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Story")
-                        .HasColumnType("text");
-
-                    b.Property<int>("YearsServed")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Veteran");
                 });
 
             modelBuilder.Entity("samonlineback.Models.Appointment", b =>

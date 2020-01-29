@@ -5,55 +5,55 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using AuthExample.Models;
 using samonlineback.Models;
-
 
 namespace samonlineback.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class ResumeController : ControllerBase
+  public class VeteranController : ControllerBase
   {
     private readonly DatabaseContext _context;
 
-    public ResumeController(DatabaseContext context)
+    public VeteranController(DatabaseContext context)
     {
       _context = context;
     }
 
-    // GET: api/Resume
+    // GET: api/Veteran
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Resume>>> GetResume()
+    public async Task<ActionResult<IEnumerable<Veteran>>> GetVeteran()
     {
-      return await _context.Resume.ToListAsync();
+      return await _context.Veteran.ToListAsync();
     }
 
-    // GET: api/Resume/5
+    // GET: api/Veteran/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<Resume>> GetResume(int id)
+    public async Task<ActionResult<Veteran>> GetVeteran(int id)
     {
-      var resume = await _context.Resume.FindAsync(id);
+      var veteran = await _context.Veteran.FindAsync(id);
 
-      if (resume == null)
+      if (veteran == null)
       {
         return NotFound();
       }
 
-      return resume;
+      return veteran;
     }
 
-    // PUT: api/Resume/5
+    // PUT: api/Veteran/5
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for
     // more details see https://aka.ms/RazorPagesCRUD.
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutResume(int id, Resume resume)
+    public async Task<IActionResult> PutVeteran(int id, Veteran veteran)
     {
-      if (id != resume.Id)
+      if (id != veteran.Id)
       {
         return BadRequest();
       }
 
-      _context.Entry(resume).State = EntityState.Modified;
+      _context.Entry(veteran).State = EntityState.Modified;
 
       try
       {
@@ -61,7 +61,7 @@ namespace samonlineback.Controllers
       }
       catch (DbUpdateConcurrencyException)
       {
-        if (!ResumeExists(id))
+        if (!VeteranExists(id))
         {
           return NotFound();
         }
@@ -74,37 +74,37 @@ namespace samonlineback.Controllers
       return NoContent();
     }
 
-    // POST: api/Resume
+    // POST: api/Veteran
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for
     // more details see https://aka.ms/RazorPagesCRUD.
     [HttpPost]
-    public async Task<ActionResult<Resume>> PostResume(Resume resume)
+    public async Task<ActionResult<Veteran>> PostVeteran(Veteran veteran)
     {
-      _context.Resume.Add(resume);
+      _context.Veteran.Add(veteran);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction("GetResume", new { id = resume.Id }, resume);
+      return CreatedAtAction("GetVeteran", new { id = veteran.Id }, veteran);
     }
 
-    // DELETE: api/Resume/5
+    // DELETE: api/Veteran/5
     [HttpDelete("{id}")]
-    public async Task<ActionResult<Resume>> DeleteResume(int id)
+    public async Task<ActionResult<Veteran>> DeleteVeteran(int id)
     {
-      var resume = await _context.Resume.FindAsync(id);
-      if (resume == null)
+      var veteran = await _context.Veteran.FindAsync(id);
+      if (veteran == null)
       {
         return NotFound();
       }
 
-      _context.Resume.Remove(resume);
+      _context.Veteran.Remove(veteran);
       await _context.SaveChangesAsync();
 
-      return resume;
+      return veteran;
     }
 
-    private bool ResumeExists(int id)
+    private bool VeteranExists(int id)
     {
-      return _context.Resume.Any(e => e.Id == id);
+      return _context.Veteran.Any(e => e.Id == id);
     }
   }
 }
