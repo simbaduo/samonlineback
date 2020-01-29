@@ -20,8 +20,6 @@ namespace samonlineback.Models
     public DateTime SecondChoiceAppointment { get; set; }
     public bool Addressed { get; set; } = false;
 
-    public 
-
 
 
 
