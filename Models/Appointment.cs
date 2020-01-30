@@ -18,6 +18,7 @@ namespace samonlineback.Models
     public string Reason { get; set; }
     public DateTime RequestedAppointment { get; set; }
     public DateTime SecondChoiceAppointment { get; set; }
+    public string AdditionalNotes { get; set; }
     public bool Addressed { get; set; } = false;
 
 

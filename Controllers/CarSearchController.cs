@@ -29,10 +29,17 @@ namespace test.Controllers
         HttpResponseMessage response = await client.GetAsync($"http://api.marketcheck.com/v2/search/car/auto-complete?api_key=4Nqu6uJ7mimviznvAjdE9uHmqsCEBfnz&field=mm&input={makeTerm}");
         response.EnsureSuccessStatusCode();
 
-        string responseBody = await response.Content.ReadAsStringAsync();
+        var searchResult = JsonSerializer.Deserialize<CarSearchResult>(await response.Content.ReadAsStringAsync());
+
+
         // Above three lines can be replaced with new helper method below
         // string responseBody = await client.GetStringAsync(uri);
-        return Ok(responseBody);
+        return Ok(new { terms = searchResult.terms.Skip(1) });
+
+        // string responseBody = await response.Content.ReadAsStringAsync();
+        // // Above three lines can be replaced with new helper method below
+        // // string responseBody = await client.GetStringAsync(uri);
+        // return Ok(responseBody);
 
         // Console.WriteLine(responseBody);
       }

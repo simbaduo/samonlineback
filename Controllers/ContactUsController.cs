@@ -22,37 +22,37 @@ namespace samonlineback.Controllers
 
         // GET: api/ContactUs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Resume>>> GetResume()
+        public async Task<ActionResult<IEnumerable<ContactUs>>> GetContactUs()
         {
-            return await _context.Resume.ToListAsync();
+            return await _context.ContactUs.ToListAsync();
         }
 
         // GET: api/ContactUs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Resume>> GetResume(int id)
+        public async Task<ActionResult<ContactUs>> GetContactUs(int id)
         {
-            var resume = await _context.Resume.FindAsync(id);
+            var contactUs = await _context.ContactUs.FindAsync(id);
 
-            if (resume == null)
+            if (contactUs == null)
             {
                 return NotFound();
             }
 
-            return resume;
+            return contactUs;
         }
 
         // PUT: api/ContactUs/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutResume(int id, Resume resume)
+        public async Task<IActionResult> PutContactUs(int id, ContactUs contactUs)
         {
-            if (id != resume.Id)
+            if (id != contactUs.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(resume).State = EntityState.Modified;
+            _context.Entry(contactUs).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace samonlineback.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ResumeExists(id))
+                if (!ContactUsExists(id))
                 {
                     return NotFound();
                 }
@@ -77,33 +77,33 @@ namespace samonlineback.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Resume>> PostResume(Resume resume)
+        public async Task<ActionResult<ContactUs>> PostContactUs(ContactUs contactUs)
         {
-            _context.Resume.Add(resume);
+            _context.ContactUs.Add(contactUs);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetResume", new { id = resume.Id }, resume);
+            return CreatedAtAction("GetContactUs", new { id = contactUs.Id }, contactUs);
         }
 
         // DELETE: api/ContactUs/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Resume>> DeleteResume(int id)
+        public async Task<ActionResult<ContactUs>> DeleteContactUs(int id)
         {
-            var resume = await _context.Resume.FindAsync(id);
-            if (resume == null)
+            var contactUs = await _context.ContactUs.FindAsync(id);
+            if (contactUs == null)
             {
                 return NotFound();
             }
 
-            _context.Resume.Remove(resume);
+            _context.ContactUs.Remove(contactUs);
             await _context.SaveChangesAsync();
 
-            return resume;
+            return contactUs;
         }
 
-        private bool ResumeExists(int id)
+        private bool ContactUsExists(int id)
         {
-            return _context.Resume.Any(e => e.Id == id);
+            return _context.ContactUs.Any(e => e.Id == id);
         }
     }
 }

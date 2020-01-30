@@ -33,7 +33,7 @@ namespace AuthExample.Services
       }),
         Expires = expirationTime,
         SigningCredentials = new SigningCredentials(
-               new SymmetricSecurityKey(Encoding.ASCII.GetBytes("testfsagsragerhgerhwerhwerhwerhwrehwerheew")),
+               new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["SENDGRID_API_KEY"])),
               SecurityAlgorithms.HmacSha256Signature
           )
       };

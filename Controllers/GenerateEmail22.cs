@@ -13,6 +13,7 @@ namespace samonlineback.Controllers
     private readonly string SENDGRID_API_KEY;
 
     public GenerateEmail22(IConfiguration configuration)
+    
     {
       this.SENDGRID_API_KEY = configuration["SENDGRID_API_KEY"];
     }

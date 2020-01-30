@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using samonlineback.Models;
@@ -9,9 +10,10 @@ using samonlineback.Models;
 namespace samonlineback.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20200130062402_AddedContactUsController")]
+    partial class AddedContactUsController
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,9 +85,6 @@ namespace samonlineback.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("AdditionalNotes")
-                        .HasColumnType("text");
 
                     b.Property<bool>("Addressed")
                         .HasColumnType("boolean");
@@ -171,8 +170,8 @@ namespace samonlineback.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
+                    b.Property<int>("Email")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Message")
                         .HasColumnType("text");
@@ -180,8 +179,8 @@ namespace samonlineback.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<string>("Phone")
-                        .HasColumnType("text");
+                    b.Property<int>("Phone")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Subject")
                         .HasColumnType("text");

@@ -33,6 +33,9 @@ namespace samonlineback.Models
       return $"server={output[2]};database={output[4]};User Id={output[0]}; password={output[1]}; port={output[3]}";
     }
 
+
+
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
       if (!optionsBuilder.IsConfigured)
