@@ -25,9 +25,6 @@ namespace samonlineback
       Configuration = configuration;
     }
 
-
-
-
     public IConfiguration Configuration { get; }
 
     // This method gets called by the runtime. Use this method to add services to the container.
@@ -51,7 +48,7 @@ namespace samonlineback
                   ValidateLifetime = true,
                   ValidateIssuerSigningKey = true,
 
-                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["SENDGRID_API_KEY"]))
+                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT_KEY"]))
                 };
               });
     }
